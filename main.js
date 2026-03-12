@@ -182,15 +182,16 @@ gi.addDrawing(function ({ ctx, width, height }) {
  */
 
 // YOUR CODE HERE
+// Adds people to the population array with random coordinates, and infects one person
 function generatePopulation (size) {
-  population = {}
+  population = [];
   for (let i=0; i<size; i++) {
-    population.push(
-      x : Math.random()+100,
-      y : Math.random()+100,
-    })
+    population.push({
+      x: Math.random()*100,
+      y: Math.random()*100,
+    });
   }
-  population{0}.infected = true;
+  population[0].infected = true;
 }
 
 
