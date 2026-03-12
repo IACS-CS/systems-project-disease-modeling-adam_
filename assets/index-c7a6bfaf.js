@@ -986,9 +986,6 @@ let gi = new T();
 /* --- STATE ------------------------------------------------------------ */
 
 let infectionRate = 0.5;
-// let population = [];
-// let roundCount = 0;
-// let infectedPerRound = [1];
 
 
 /* --- COORDINATE HELPER ------------------------------------------------
@@ -1143,18 +1140,7 @@ gi.addDrawing(function ({ ctx, width, height }) {
 });
 
 
-/* --- SIMULATION LOGIC -------------------------------------------------
- *
- * Write functions to update your population each round.
- * Your CREATE task function must have a parameter that affects
- * its behavior, sequencing, selection (if/else), iteration (loop),
- * and an explicit call with arguments somewhere in your code.
- */
-
-// YOUR CODE HERE
-
-
-/* --- CONTROLS --------------------------------------------------------- */
+  /* --- CONTROLS --------------------------------------------------------- */
 
 let topBar = gi.addTopBar();
 
@@ -1191,4 +1177,4 @@ topBar.addButton({
 
 
 gi.run();
-//# sourceMappingURL=index-deb08b3a.js.map
+//# sourceMappingURL=index-c7a6bfaf.js.map
