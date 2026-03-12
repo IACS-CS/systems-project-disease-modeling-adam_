@@ -1,7 +1,7 @@
 /* Main game file: main.js */
 /* Game: [Your Game Name Here] */
 /* Authors: [Your Name(s) Here] */
-/* Description: [Short description of your game here] */
+/* Description: [Flu spread with vaccination] */
 /* Citations: [List any resources, libraries, tutorials, etc you used here] */
 /* AI Use: describe what you asked, what it gave you, and what you changed. */
 /* Mark AI-generated sections: // AI-generated: ... // end AI-generated   */
@@ -15,9 +15,10 @@ let gi = new GameInterface();
 /* --- STATE ------------------------------------------------------------ */
 
 let infectionRate = 0.5;
-// let population = [];
-// let roundCount = 0;
-// let infectedPerRound = [1];
+let population = [];
+let roundCount = 0;
+let infectedPerRound = [1];
+let vaccinationRate = 0.3;
 
 
 /* --- COORDINATE HELPER ------------------------------------------------
@@ -181,9 +182,19 @@ gi.addDrawing(function ({ ctx, width, height }) {
  */
 
 // YOUR CODE HERE
+function generatePopulation (size) {
+  population = {}
+  for (let i=0; i<size; i++) {
+    population.push(
+      x : Math.random()+100,
+      y : Math.random()+100,
+    })
+  }
+  population{0}.infected = true;
+}
 
 
-/* --- CONTROLS --------------------------------------------------------- */
+  /* --- CONTROLS --------------------------------------------------------- */
 
 let topBar = gi.addTopBar();
 
