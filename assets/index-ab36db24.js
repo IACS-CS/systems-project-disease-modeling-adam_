@@ -986,6 +986,9 @@ let gi = new T();
 /* --- STATE ------------------------------------------------------------ */
 
 let infectionRate = 0.5;
+let population = [];
+let vaccinationRate = 0.3; // 30% chance of being vaccinated
+let populationSize = 100; // default population size
 
 
 /* --- COORDINATE HELPER ------------------------------------------------
@@ -1022,7 +1025,6 @@ function percentToPixels(x, y, bounds) {
  * @param {number} elapsed - ms since simulation started
  */
 function drawSimulation(ctx, bounds, elapsed) {
-
   // Draw a border around the simulation area...
   let topLeft = percentToPixels(0, 0, bounds);
   let bottomRight = percentToPixels(100, 100, bounds);
@@ -1031,7 +1033,6 @@ function drawSimulation(ctx, bounds, elapsed) {
   ctx.strokeRect(topLeft.x, topLeft.y,
     bottomRight.x - topLeft.x,
     bottomRight.y - topLeft.y);
-
   // Example: utility function to draw a person as a circle
   function drawPerson(px, py, color) {
     let { x, y } = percentToPixels(px, py, bounds);
@@ -1040,18 +1041,21 @@ function drawSimulation(ctx, bounds, elapsed) {
     ctx.arc(x, y, 5, 0, Math.PI * 2);
     ctx.fill();
   }
-
   // Now we draw some people...
   // (in your real code you'll replace this with a loop)
   // like...
-  // for (let person of population) {...}
-
-  drawPerson(50, 50, 'green');
-  drawPerson(35, 80, 'red');
-
-  // YOUR CODE HERE
-
+  // Draw some people from the population array, using their x and y coordinates and infected status to determine their color
+  for (let person of population) {
+    let color = 'green';
+    if (person.state === 'infected') {
+      color = 'red';
+    } else if (person.state === 'vaccinated') {
+      color = 'blue';
+    }
+    drawPerson(person.x, person.y, color);
+  }
 }
+
 
 
 /* --- DRAWING: GRAPH ---------------------------------------------------
@@ -1140,6 +1144,43 @@ gi.addDrawing(function ({ ctx, width, height }) {
 });
 
 
+/* --- SIMULATION LOGIC -------------------------------------------------
+ *
+ * Write functions to update your population each round.
+ * Your CREATE task function must have a parameter that affects
+ * its behavior, sequencing, selection (if/else), iteration (loop),
+ * and an explicit call with arguments somewhere in your code.
+ */
+
+// YOUR CODE HERE
+// Adds people to the population array with random coordinates, and infects one person
+function generatePopulation (size) {
+  population = [];
+  for (let i = 0; i < size; i++) {
+    // This code was helped written by ChatGPT
+    // Randomly decide if the person is vaccinated based on the vaccination rate
+    let isVaccinated = Math.random() < vaccinationRate;
+    // Create states for persons: 'healthy', 'infected', 'vaccinated'
+    // Start everyone as healthy then change to some persons to vaccinated randomly
+    let state = 'healthy';
+    if (isVaccinated) {
+      state = 'vaccinated';
+    }
+    population.push({
+      x: Math.random()*100,
+      y: Math.random()*100,
+      state: state
+    });
+  }
+  // So infect one random person
+  // This code was helped written by Githit Copilot
+  // Choose one random person to start infected so we can start the simulation
+  let randomIndex = Math.floor(Math.random() * population.length);
+  population[randomIndex].state = 'infected';
+}
+generatePopulation(populationSize); // Generate initial population
+
+
   /* --- CONTROLS --------------------------------------------------------- */
 
 let topBar = gi.addTopBar();
@@ -1177,4 +1218,4 @@ topBar.addButton({
 
 
 gi.run();
-//# sourceMappingURL=index-c7a6bfaf.js.map
+//# sourceMappingURL=index-ab36db24.js.map
