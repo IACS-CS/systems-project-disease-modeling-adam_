@@ -18,7 +18,8 @@ let infectionRate = 0.5;
 let population = [];
 let roundCount = 0;
 let infectedPerRound = [1];
-let vaccinationRate = 0.3;
+let vaccinationRate = 0.3; // 30% chance of being vaccinated
+let size = 100;
 
 
 /* --- COORDINATE HELPER ------------------------------------------------
@@ -55,6 +56,14 @@ function percentToPixels(x, y, bounds) {
  * @param {number} elapsed - ms since simulation started
  */
 function drawSimulation(ctx, bounds, elapsed) {
+  // If person is infected they are red
+  // If person is vaccinated they are blue
+  // If person is healthy they are green
+  // This code was helped written by Github Copilot
+  for (let person of population) {
+    let color = 'green';
+    if (person.infected) {
+      color = 'red';
 
   // Draw a border around the simulation area...
   let topLeft = percentToPixels(0, 0, bounds);
@@ -77,12 +86,13 @@ function drawSimulation(ctx, bounds, elapsed) {
   // Now we draw some people...
   // (in your real code you'll replace this with a loop)
   // like...
-  // for (let person of population) {...}
+  // Draw some people from the population array, using their x and y coordinates and infected status to determine their color
+  for (let person of population) {
 
-  drawPerson(50, 50, 'green');
-  drawPerson(35, 80, 'red');
+  
 
-  // YOUR CODE HERE
+ 
+  
 
 }
 
@@ -185,13 +195,17 @@ gi.addDrawing(function ({ ctx, width, height }) {
 // Adds people to the population array with random coordinates, and infects one person
 function generatePopulation (size) {
   population = [];
-  for (let i=0; i<size; i++) {
+  for (let i = 0; i < size; i++) {
     population.push({
       x: Math.random()*100,
       y: Math.random()*100,
+      // This code was helped written by Github Copilot
+      infected: false,
+      // Each person has a random chance of being vaccinated
+      vaccinated: Math.random() < vaccinationRate,
+      // Vaccinated people have a chance to be infected, but it's lower than unvaccinated people
     });
   }
-  population[0].infected = true;
 }
 
 
