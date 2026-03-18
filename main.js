@@ -19,7 +19,7 @@ let population = [];
 let roundCount = 0;
 let infectedPerRound = [1];
 let vaccinationRate = 0.3; // 30% chance of being vaccinated
-let size = 100;
+let generatePopulation = 100;
 
 
 /* --- COORDINATE HELPER ------------------------------------------------
@@ -56,14 +56,8 @@ function percentToPixels(x, y, bounds) {
  * @param {number} elapsed - ms since simulation started
  */
 function drawSimulation(ctx, bounds, elapsed) {
-  // If person is infected they are red
-  // If person is vaccinated they are blue
-  // If person is healthy they are green
-  // This code was helped written by Github Copilot
-  for (let person of population) {
-    let color = 'green';
-    if (person.infected) {
-      color = 'red';
+}
+  
 
   // Draw a border around the simulation area...
   let topLeft = percentToPixels(0, 0, bounds);
@@ -88,12 +82,14 @@ function drawSimulation(ctx, bounds, elapsed) {
   // like...
   // Draw some people from the population array, using their x and y coordinates and infected status to determine their color
   for (let person of population) {
-
-  
-
- 
-  
-
+    let color = 'green';
+    if (person.state === 'infected') {
+      color = 'red';
+    } else if (person.state === 'vaccinated') {
+      color = 'blue';
+    }
+    drawPerson(person.x, person.y, color);
+  }
 }
 
 
