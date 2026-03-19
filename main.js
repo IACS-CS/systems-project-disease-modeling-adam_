@@ -257,7 +257,7 @@ let topBar = gi.addTopBar();
 topBar.addButton({
   text: 'Next Round',
   onclick: function () {
-    window.alert('Replace me: call your simulation update function');
+    runNextRound();
   }
 });
 // Slider that updates infectionRate variable
