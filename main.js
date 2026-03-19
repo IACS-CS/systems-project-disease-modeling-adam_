@@ -1,8 +1,8 @@
 /* Main game file: main.js */
-/* Game: [Your Game Name Here] */
-/* Authors: [Your Name(s) Here] */
+/* Game: [Flu spread simulation with vaccination] */
+/* Authors: [Adam Tran] */
 /* Description: [Flu spread with vaccination] */
-/* Citations: [List any resources, libraries, tutorials, etc you used here] */
+/* Citations: [Mr. Hinke's help and Game Interface Library] */
 /* AI Use: describe what you asked, what it gave you, and what you changed. */
 /* Mark AI-generated sections: // AI-generated: ... // end AI-generated   */
 
