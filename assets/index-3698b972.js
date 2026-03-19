@@ -1207,6 +1207,13 @@ topBar.addSlider({
   }
 });
 
+topBar.addSlider({
+  label: 'Vaccination Rate',
+  min: 0, max: 1, step: 0.01,
+  oninput: function (value) { vaccinationRate = value; }
+});
+   
+
 topBar.addButton({
   text: 'Reset',
   onclick: function () {
@@ -1218,4 +1225,4 @@ topBar.addButton({
 
 
 gi.run();
-//# sourceMappingURL=index-ab36db24.js.map
+//# sourceMappingURL=index-3698b972.js.map
