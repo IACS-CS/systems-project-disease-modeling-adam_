@@ -1157,6 +1157,16 @@ gi.addDrawing(function ({ ctx, width, height }) {
 function runNextRound() {
   // Variable to determine how close 2 people need to be to spread the infection
   let infectionDistance = 5; 
+  // Make everyone move around
+  for (let person of population) {
+    // The following code was helped written by Github Copilot
+    // Move each person randomly by up to 2 percent in any direction
+    person.x += (Math.random() - 0.5) * 4; // Move between -2 and +2
+    person.y += (Math.random() - 0.5) * 4; // Move between -2 and +2
+    // Keep them within bounds of 0 to 100
+    person.x = Math.max(0, Math.min(100, person.x));
+    person.y = Math.max(0, Math.min(100, person.y));
+  }
   // Loop through everyone in the population 
   for(let i = 0; i < population.length; i++) {
     let personA = population[i];
@@ -1268,4 +1278,4 @@ topBar.addButton({
 
 gi.run();
 // Add movement and bar graph later
-//# sourceMappingURL=index-772b88fb.js.map
+//# sourceMappingURL=index-a5e35026.js.map
