@@ -1267,4 +1267,5 @@ topBar.addButton({
 
 
 gi.run();
-//# sourceMappingURL=index-85dbfeea.js.map
+// Add movement and bar graph later
+//# sourceMappingURL=index-772b88fb.js.map
