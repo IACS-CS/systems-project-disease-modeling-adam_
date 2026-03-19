@@ -238,6 +238,13 @@ topBar.addSlider({
   }
 });
 
+topBar.addSlider({
+  label: 'Vaccination Rate',
+  min: 0, max: 1, step: 0.01,
+  oninput: function (value) { vaccinationRate = value; }
+});
+   
+
 topBar.addButton({
   text: 'Reset',
   onclick: function () {
