@@ -194,9 +194,11 @@ function generatePopulation (size) {
     // Create states for persons: 'healthy', 'infected', 'vaccinated'
     // Start everyone as healthy then change to some persons to vaccinated randomly
     let state = 'healthy';
+    // If the person is vaccinated, change their state to 'vaccinated'
     if (isVaccinated) {
       state = 'vaccinated';
     }
+    // Add the person to the population array with random corrdinates and state
     population.push({
       x: Math.random()*100,
       y: Math.random()*100,
@@ -209,7 +211,8 @@ function generatePopulation (size) {
   let randomIndex = Math.floor(Math.random() * population.length);
   population[randomIndex].state = 'infected';
 }
-generatePopulation(populationSize); // Generate initial population
+// Generate initial population
+generatePopulation(populationSize); 
 
 
   /* --- CONTROLS --------------------------------------------------------- */
@@ -222,14 +225,14 @@ topBar.addButton({
     window.alert('Replace me: call your simulation update function');
   }
 });
-
+// Slider that updates infectionRate variable
 topBar.addSlider({
   label: 'Infection Rate',
   min: 0, max: 1, step: 0.01,
   value: infectionRate,
   oninput: function (value) { infectionRate = value; }
 });
-
+// Slider that determines population size
 topBar.addSlider({
   label: 'Initial Population',
   min: 16, max: 2048,
@@ -239,14 +242,15 @@ topBar.addSlider({
     generatePopulation(populationSize); // Regenerate population with new size
   }
 });
-
+// Slider that updates vaccinationRate variable
 topBar.addSlider({
   label: 'Vaccination Rate',
   min: 0, max: 1, step: 0.01,
   // This code was helped written by ChatGPT
   value: vaccinationRate,
   oninput: function (value) { vaccinationRate = value; 
-  generatePopulation(populationSize); // Regenerate population with new vaccination rate
+  // Regenerate population with current size and vaccination rate
+  generatePopulation(populationSize); 
   }
 });
    
@@ -254,7 +258,8 @@ topBar.addSlider({
 topBar.addButton({
   text: 'Reset',
   onclick: function () {
-    generatePopulation(populationSize); // Regenerate population with current size and vaccination rate
+    // Regenerate population with current size and vaccination rate
+    generatePopulation(populationSize); 
   }
 });
 
