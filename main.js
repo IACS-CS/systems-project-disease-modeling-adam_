@@ -234,21 +234,27 @@ topBar.addSlider({
   label: 'Initial Population',
   min: 16, max: 2048,
   oninput: function (value) {
-    window.alert('Replace me: call your generatePopulation function with size ' + value);
+    // This code was helped written by GitHub Copilot
+    populationSize = value;
+    generatePopulation(populationSize); // Regenerate population with new size
   }
 });
 
 topBar.addSlider({
   label: 'Vaccination Rate',
   min: 0, max: 1, step: 0.01,
-  oninput: function (value) { vaccinationRate = value; }
+  // This code was helped written by ChatGPT
+  value: vaccinationRate,
+  oninput: function (value) { vaccinationRate = value; 
+  generatePopulation(populationSize); // Regenerate population with new vaccination rate
+  }
 });
    
 
 topBar.addButton({
   text: 'Reset',
   onclick: function () {
-    window.alert('Replace me: call your generatePopulation function');
+    generatePopulation(populationSize); // Regenerate population with current size and vaccination rate
   }
 });
 
