@@ -18,6 +18,7 @@ let infectionRate = 0.5;
 let population = [];
 let roundCount = 0;
 let infectedPerRound = [1];
+let totalInfectedPerRound = [1];
 let vaccinationRate = 0.3; // 30% chance of being vaccinated
 let populationSize = 100; // default population size
 
@@ -174,7 +175,7 @@ gi.addDrawing(function ({ ctx, width, height }) {
     left: 50,
     right: width - 50,
   };
-  drawGraph([], 1, ctx, graphBounds);  // <- replace [] and 1 with your real data
+  drawGraph(totalInfectedPerRound, populationSize, ctx, graphBounds);  // <- replace [] and 1 with your real data
 });
 
 gi.addDrawing(function ({ ctx, width, height }) {
@@ -234,6 +235,10 @@ function runNextRound() {
     }
   }
   infectedPerRound.push(newInfections);
+  // Update total infected count for the graph
+  let totalInfectedBefore = totalInfectedPerRound[roundCount - 1];
+  let totalInfected = totalInfectedBefore + newInfections;
+  totalInfectedPerRound.push(totalInfected);
   roundCount++;
 }
 
