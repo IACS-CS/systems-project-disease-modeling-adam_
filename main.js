@@ -118,8 +118,15 @@ function drawGraph(data, dataMax, ctx, bounds) {
   ctx.stroke();
 
   // YOUR CODE HERE
-  // Hint: let pct = (data[i] / dataMax) * 100;
-
+  // Create a bar graph to show how many people got infected each round
+  // This code was helped written by Github Copilot
+    for (let i = 0; i < data.length; i++) {
+      let pct = (data[i] / dataMax) * 100;
+      let barTop = percentToPixels(i * (100 / data.length), 100 - pct, bounds);
+      let barBottom = percentToPixels(i * (100 / data.length), 100, bounds);
+      ctx.fillStyle = 'red';
+      ctx.fillRect(barTop.x, barTop.y, (bounds.right - bounds.left) / data.length - 2, barBottom.y - barTop.y);
+  }
 }
 
 
@@ -229,7 +236,16 @@ function runNextRound() {
   infectedPerRound.push(newInfections);
   roundCount++;
 }
+// Loop through the population and update the state based on the vaccination rate 
+// This code was helped written by Github Copilot
+function updateVaccination(rate) {
+  for (let person of population) {
+    if (Math.random() < rate) {
+      person.state = 'vaccinated';
+    }
+  }
 
+}
 // Adds people to the population array with random coordinates, and infects one person
 function generatePopulation (size) {
   population = [];
@@ -296,7 +312,8 @@ topBar.addSlider({
   value: vaccinationRate,
   oninput: function (value) { vaccinationRate = value; 
   // Regenerate population with current size and vaccination rate
-  generatePopulation(populationSize); 
+  // Allow user to switch the slider back and forth to see how it affects the simulation
+  updateVaccination(vaccinationRate);
   }
 });
    
@@ -313,4 +330,4 @@ topBar.addButton({
 
 
 gi.run();
-// Add movement and bar graph later
+// Add bar graph 
