@@ -1200,16 +1200,7 @@ function runNextRound() {
     }
   }
 }
-// Loop through the population and update the state based on the vaccination rate 
-// This code was helped written by Github Copilot
-function updateVaccination(rate) {
-  for (let person of population) {
-    if (Math.random() < rate) {
-      person.state = 'vaccinated';
-    }
-  }
 
-}
 // Adds people to the population array with random coordinates, and infects one person
 function generatePopulation (size) {
   population = [];
@@ -1277,7 +1268,7 @@ topBar.addSlider({
   oninput: function (value) { vaccinationRate = value; 
   // Regenerate population with current size and vaccination rate
   // Allow user to switch the slider back and forth to see how it affects the simulation
-  updateVaccination(vaccinationRate);
+    generatePopulation(populationSize);
   }
 });
    
@@ -1295,4 +1286,4 @@ topBar.addButton({
 
 gi.run();
 // Add bar graph
-//# sourceMappingURL=index-f633aea5.js.map
+//# sourceMappingURL=index-7a34aecb.js.map
