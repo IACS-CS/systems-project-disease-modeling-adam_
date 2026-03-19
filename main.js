@@ -184,6 +184,41 @@ gi.addDrawing(function ({ ctx, width, height }) {
  */
 
 // YOUR CODE HERE
+// This code was helped written by Gemini
+function runNextRound() {
+  // Variable to determine how close 2 people need to be to spread the infection
+  let infectionDistance = 5; 
+  let newInfections = 0; // Count new infections this round
+  // Loop through everyone in the population 
+  for(let i = 0; i < population.length; i++) {
+    let personA = population[i];
+    // Only infected people can spread the infection
+    if (personA.state === 'infected') {
+      // Loop through everyone else in the population to see if they get infected
+      for (let j = 0; j < population.length; j++) {
+        let personB = population[j];
+      // Only healthy people can get infected
+      // This code was helped written by Github Copilot
+        if (personB.state === 'healthy') {
+          // Calculate distance between personA and personB
+          let dx = personA.x - personB.x;
+          let dy = personA.y - personB.y;
+          let distance = Math.sqrt(dx*dx + dy*dy);
+          // If they are close enough, try to infect based on infectionRate
+          if (distance < infectionDistance) {
+            if (Math.random() < infectionRate) {
+              personB.state = 'infected';
+              newInfections++;
+            }
+          }
+        }
+      }
+    }
+  }
+  infectedPerRound.push(newInfections);
+  roundCount++;
+}
+
 // Adds people to the population array with random coordinates, and infects one person
 function generatePopulation (size) {
   population = [];
