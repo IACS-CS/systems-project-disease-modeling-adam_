@@ -987,6 +987,8 @@ let gi = new T();
 
 let infectionRate = 0.5;
 let population = [];
+let roundCount = 0;
+let totalInfectedPerRound = [1];
 let vaccinationRate = 0.3; // 30% chance of being vaccinated
 let populationSize = 100; // default population size
 
@@ -1143,7 +1145,7 @@ gi.addDrawing(function ({ ctx, width, height }) {
     left: 50,
     right: width - 50,
   };
-  drawGraph([], 1, ctx, graphBounds);  // <- replace [] and 1 with your real data
+  drawGraph(totalInfectedPerRound, populationSize, ctx, graphBounds);  // <- replace [] and 1 with your real data
 });
 
 gi.addDrawing(function ({ ctx, width, height }) {
@@ -1164,6 +1166,7 @@ gi.addDrawing(function ({ ctx, width, height }) {
 function runNextRound() {
   // Variable to determine how close 2 people need to be to spread the infection
   let infectionDistance = 5; 
+  let newInfections = 0; // Count new infections this round
   // Make everyone move around
   for (let person of population) {
     // The following code was helped written by Github Copilot
@@ -1193,12 +1196,19 @@ function runNextRound() {
           if (distance < infectionDistance) {
             if (Math.random() < infectionRate) {
               personB.state = 'infected';
+              // Count this as a new infection for the graph
+              newInfections++;
             }
           }
         }
       }
     }
   }
+  // Update total infected count for the graph
+  let totalInfectedBefore = totalInfectedPerRound[roundCount - 1];
+  let totalInfected = totalInfectedBefore + newInfections;
+  totalInfectedPerRound.push(totalInfected);
+  roundCount++;
 }
 
 // Adds people to the population array with random coordinates, and infects one person
@@ -1286,4 +1296,4 @@ topBar.addButton({
 
 gi.run();
 // Add bar graph
-//# sourceMappingURL=index-7a34aecb.js.map
+//# sourceMappingURL=index-50a2def1.js.map
