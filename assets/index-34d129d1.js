@@ -1143,16 +1143,6 @@ gi.addDrawing(function ({ ctx, width, height }) {
   drawHUD(ctx);
 });
 
-
-/* --- SIMULATION LOGIC -------------------------------------------------
- *
- * Write functions to update your population each round.
- * Your CREATE task function must have a parameter that affects
- * its behavior, sequencing, selection (if/else), iteration (loop),
- * and an explicit call with arguments somewhere in your code.
- */
-
-// YOUR CODE HERE
 // Adds people to the population array with random coordinates, and infects one person
 function generatePopulation (size) {
   population = [];
@@ -1236,4 +1226,4 @@ topBar.addButton({
 
 
 gi.run();
-//# sourceMappingURL=index-8c0c9c18.js.map
+//# sourceMappingURL=index-34d129d1.js.map
