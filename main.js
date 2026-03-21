@@ -3,7 +3,19 @@
 /* Authors: [Adam Tran] */
 /* Description: [Flu spread with vaccination] */
 /* Citations: [Mr. Hinke's help and Game Interface Library] */
-/* AI Use: describe what you asked, what it gave you, and what you changed. */
+/* AI Use: I asked Gemini AI to explain what 'j' means in a nested loop(i's the second counter
+Gemini AI helped me write the 'runNextRound' function that satisfies the requirements of
+paramaters, loops, and if-statements. Gemini AI helped me write the reset button to clear
+the graph data. It also help created a for let loop that checks the distance bteween 2 people
+and determine whether or not they get infected based on the infection rates. Gemini also cleared 
+up understanding of vaccinated people and tha they would not get infected. I used ChatGPT AI 
+for assistance in generating the population, asked what
+state meant and works, I asked ChatGPT to help with movement and infection spread function to update
+each round, I asked it for help on why my simulation was not updating. I used ChatGPT to assist in
+creating a functioning slider for vaccination rate.I used Github Copilot AI
+to create a for loop for each person of the population to have states such as infected, vaccinated,
+and healthy. It was also used to create the slider for choosing inital population. Github Copilot
+generative AI was used to create the bar graph setup but was implemented later by human creation.) */
 /* Mark AI-generated sections: // AI-generated: ... // end AI-generated   */
 
 import "./style.css";
